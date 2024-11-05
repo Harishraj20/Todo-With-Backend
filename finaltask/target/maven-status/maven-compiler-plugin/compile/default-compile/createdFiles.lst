@@ -1,0 +1,8 @@
+com\task\Repository\UserRepository.class
+com\task\Service\TodoService.class
+com\task\Model\User.class
+com\task\Model\Todo.class
+com\task\Repository\TodoRepository.class
+com\task\Service\UserService.class
+com\task\Controller\TodoController.class
+com\task\Controller\UserController.class
