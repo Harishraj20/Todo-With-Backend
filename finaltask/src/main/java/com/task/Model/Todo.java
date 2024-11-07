@@ -16,6 +16,7 @@ public class Todo {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int taskId;
     private String TaskName;
+    public String TaskStatus = "false";
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -25,10 +26,11 @@ public class Todo {
 
     }
 
-    public Todo(int taskId, String taskName, User users) {
+    public Todo(int taskId, String taskName, String TaskStatus, User users) {
         this.taskId = taskId;
-        TaskName = taskName;
+        this.TaskName = taskName;
         this.users = users;
+        this.TaskStatus = TaskStatus;
     }
 
     public int getTaskId() {
@@ -53,5 +55,10 @@ public class Todo {
 
     public void setUsers(User users) {
         this.users = users;
+    }
+
+    @Override
+    public String toString() {
+        return "Todo [taskId=" + taskId + ", TaskName=" + TaskName + ", users=" + users + "]";
     }
 }
