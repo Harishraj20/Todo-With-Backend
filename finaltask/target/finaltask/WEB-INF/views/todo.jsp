@@ -28,8 +28,9 @@
   <body>
     <div class="Container">
       <div class="heading"><h1>MY To-Do LIST!</h1></div>
-      <form action="/finaltask/todo" method="post">
+      <form  method="post" class="taskForm" onsubmit="handleAdd(event)">
         <div class="input">
+          <input type="hidden" id="taskId" value="" name="editTaskId">
           <input
             type="text"
             maxlength="150"
@@ -38,7 +39,7 @@
             placeholder="Enter task..."
             name="TaskName"
           />
-          <button type="button" class="addbutton">Add</button>
+          <button type="button" class="addbutton" onclick="handleAdd(event)">Add</button>
         </div>
       </form>
 
@@ -61,18 +62,18 @@
     
                                 <button class="done " 
                                          >
-                                    <i class="fa-solid fa-circle-check fa-2xl"></i>                 
+                                         <i class="fa-solid fa-circle-check fa-2xl" style="color: #3cdd6c;"></i></i>                 
                                 </button>
-    
-                                <button class="editbutton" 
-                                        >
+
+                                <button class="editbutton"   onclick="handleEdit('${task.taskId}', '${task.taskName}')">
                                     <i class="fa-regular fa-pen-to-square fa-2xl" style="color: #0e78c8;"></i>
                                 </button>
-    
-                                <button class="Deletebutton" 
-                                        onclick="deleteElement(event)">
-                                   <i class="fa-solid fa-trash fa-2xl" style="color: #f23131;"></i>
-                                </button>
+                                <form action="delete">
+                                  <input type="hidden" value="${task.taskId}" name="deleteId">
+                                    <button class="Deletebutton" >
+                                      <i class="fa-solid fa-trash fa-2xl" style="color: #f23131;"></i>
+                                    </button>
+                              </form>
                             </div>
                         </li>
                     </c:forEach>
@@ -85,6 +86,7 @@
         <c:when test="${empty ListOfTodo}">
             <div class="Notaskimage" style="display: flex">
                 <img src="todo.jpg" alt="No tasks image" />
+                
             </div>
         </c:when>
     </c:choose>
@@ -101,5 +103,7 @@
         </div>
       </div>
     </div>
+    <script src="<c:url value='/javascript/Todo.js' />"></script>
+
   </body>
 </html>

@@ -20,7 +20,7 @@ public class TodoController {
     @Autowired
     private TodoService todoService;
 
-    @PostMapping("/todo")
+    @PostMapping("/addTodo")
     public String addTodo(@RequestParam String TaskName, HttpSession session) {
         int userId = (int) session.getAttribute("userId");
         todoService.addTodoForUser(userId, TaskName);
@@ -35,4 +35,28 @@ public class TodoController {
         mv.addObject("ListOfTodo", todoList);
         return mv;
     }
+
+    @GetMapping("/delete")
+    public String deleteTask(@RequestParam int deleteId) {
+
+        boolean result = todoService.deleteTaskById(deleteId);
+        if (result) {
+            return "redirect:/todoList";
+        }
+        return "message";
+    }
+
+    @PostMapping("/editTask")
+    public String editTask(@RequestParam int editTaskId, @RequestParam String TaskName) {
+
+        boolean result = todoService.editById(editTaskId,TaskName);
+        if (!result) {
+            return "message";
+
+        } else {
+            return "redirect:/todoList";
+
+        }
+    }
+
 }

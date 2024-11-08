@@ -27,4 +27,14 @@ public class TodoService {
 
     }
 
+    public boolean deleteTaskById(int deleteId) {
+
+        return todorepo.deleteById(deleteId);
+    }
+
+    public boolean editById(int editTaskId, String TaskName) {
+
+        return todorepo.editTask(editTaskId,TaskName);
+    }
+
 }
